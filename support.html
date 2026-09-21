@@ -1,41 +1,424 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Support | Polariscene</title>
-    <link rel="stylesheet" href="style.css?v=de8242a">
-  </head>
-  <body>
-    <header class="top">
-      <a class="brand" href="index.html">
-      <img src="polariscene-logo.png" alt="Polariscene" class="brand-logo">
-      </a>
-      <nav>
-        <a href="privacy.html">Privacy</a>
-        <a href="support.html">Support</a>
-        <a href="terms.html">Terms</a>
-      </nav>
-    </header>
-    <main>
-      <article class="panel">
-        <p class="eyebrow">We’re here to help</p>
-        <h1>Polariscene Support</h1>
-        <p>Need help making, saving, or sharing your photostrip? Email <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=polariscene.support@gmail.com" target="_blank" rel="noopener noreferrer">polariscene.support@gmail.com</a>.</p>
-        <a class="button" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=polariscene.support@gmail.com" target="_blank" rel="noopener noreferrer">Email support</a>
-        <h2>How do I save a photostrip?</h2>
-        <p>On the final photostrip screen, tap <strong>Save</strong> to add your finished strip to your photo library. Make sure photo-saving permission is enabled if your device asks for it.</p>
-        <h2>How do I share?</h2>
-        <p>Tap <strong>Share</strong> on the final screen and choose an available app or destination from your device's share sheet.</p>
-        <h2>How do I restore Premium?</h2>
-        <p>Open the Premium purchase screen and select <strong>Restore Purchases</strong>. Use the same Apple account associated with your existing purchase. Access depends on whether your subscription remains active.</p>
-        <h2>How do I cancel?</h2>
-        <p>On iPhone, open <strong>Settings → [your name] → Subscriptions</strong>, select Polariscene if present, and follow Apple's cancellation instructions. Deleting the app does not cancel a subscription.</p>
-        <h2>Privacy requests</h2>
-        <p>For privacy-related questions or requests about information handled by Polariscene, use the support email above and include “Privacy request” in the subject.</p>
-      </article>
-      <footer>© 2026 Polariscene · <a href="privacy.html">Privacy Policy</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get help with Polariscene photos, subscriptions, and app issues.">
+  <title>Support | Polariscene</title>
+  <link rel="stylesheet" href="style.css?v=support-form-1">
+  <style>
+    .support-intro {
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .support-intro h1 {
+      margin-bottom: 1rem;
+    }
+
+    .support-intro p {
+      margin-bottom: 0;
+    }
+
+    .support-form {
+      display: grid;
+      gap: 1.35rem;
+      margin-top: 1.8rem;
+    }
+
+    .support-field {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .support-field label {
+      color: #43334b;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .support-field input,
+    .support-field select,
+    .support-field textarea {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      padding: 0.9rem 1rem;
+      border: 1px solid #efd8d3;
+      border-radius: 14px;
+      outline: none;
+      background: #fffdfb;
+      color: #43334b;
+      font: inherit;
+      line-height: 1.5;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .support-field input::placeholder,
+    .support-field textarea::placeholder {
+      color: #9e919d;
+    }
+
+    .support-field input:focus,
+    .support-field select:focus,
+    .support-field textarea:focus {
+      border-color: #e96d73;
+      box-shadow: 0 0 0 3px rgba(233, 109, 115, 0.13);
+    }
+
+    .support-field textarea {
+      min-height: 155px;
+      resize: vertical;
+    }
+
+    .support-help {
+      margin: 0;
+      color: #806f81;
+      font-size: 0.82rem;
+    }
+
+    .support-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 50px;
+      padding: 0.8rem 1.25rem;
+      border: 1px solid #e96d73;
+      border-radius: 100px;
+      background: #e96d73;
+      color: #ffffff;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+      transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .support-submit:hover:not(:disabled) {
+      background: #d95c65;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(233, 109, 115, 0.18);
+    }
+
+    .support-submit:disabled {
+      cursor: wait;
+      opacity: 0.7;
+    }
+
+    .support-status {
+      margin: 0;
+      padding: 0;
+      font-size: 0.93rem;
+    }
+
+    .support-status:empty {
+      display: none;
+    }
+
+    .support-status[data-state="success"] {
+      padding: 0.85rem 1rem;
+      border: 1px solid #b9ddc2;
+      border-radius: 12px;
+      background: #f0faf2;
+      color: #27663b;
+    }
+
+    .support-status[data-state="error"] {
+      padding: 0.85rem 1rem;
+      border: 1px solid #f1c3c0;
+      border-radius: 12px;
+      background: #fff1ef;
+      color: #a63b43;
+    }
+
+    .support-divider {
+      height: 1px;
+      margin: 2rem 0 1.25rem;
+      background: #efd8d3;
+    }
+
+    .support-alternative {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+
+    .support-alternative a {
+      color: #b54d60;
+      overflow-wrap: anywhere;
+    }
+
+    .support-trap {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .support-field input,
+      .support-field select,
+      .support-field textarea {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top">
+    <a class="brand" href="index.html">
+      <img
+        src="polariscene-logo.png"
+        alt="Polariscene"
+        class="brand-logo"
+      >
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="support.html" aria-current="page">Support</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="support-intro">
+      <p class="eyebrow">POLARISCENE SUPPORT ✦</p>
+      <h1>How can we help?</h1>
+      <p>
+        Questions about your photos, subscriptions, or the app?
+        Tell us what happened, and we'll get back to you by email.
+      </p>
+    </div>
+
+    <section class="panel">
+      <h2>Send us a message</h2>
+      <p>
+        Fill out the form below. You won't need to open an email app.
+      </p>
+
+      <form
+        id="polariscene-support-form"
+        class="support-form"
+        action="https://formspree.io/f/xoevddgr"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="subject"
+          value="Polariscene Support Request"
+        >
+
+        <div class="support-trap" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input
+            type="text"
+            id="website"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="support-field">
+          <label for="support-email">
+            Your email
+          </label>
+
+          <input
+            id="support-email"
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            maxlength="254"
+            required
+          >
+
+          <p class="support-help">
+            We'll use this address to reply to your message.
+          </p>
+        </div>
+
+        <div class="support-field">
+          <label for="support-topic">
+            What do you need help with?
+          </label>
+
+          <select
+            id="support-topic"
+            name="topic"
+            required
+          >
+            <option value="" disabled selected>
+              Select a topic
+            </option>
+
+            <option value="Saving or sharing photos">
+              Saving or sharing photos
+            </option>
+
+            <option value="Frames or photo editor">
+              Frames or photo editor
+            </option>
+
+            <option value="Subscription or payment">
+              Subscription or payment
+            </option>
+
+            <option value="Report a problem">
+              Report a problem
+            </option>
+
+            <option value="Privacy or data request">
+              Privacy or data request
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
+          </select>
+        </div>
+
+        <div class="support-field">
+          <label for="support-message">
+            Tell us more
+          </label>
+
+          <textarea
+            id="support-message"
+            name="message"
+            placeholder="Describe what happened and how we can help..."
+            minlength="10"
+            maxlength="5000"
+            required
+          ></textarea>
+
+          <p class="support-help">
+            Please don't include passwords, payment card details,
+            or other sensitive information.
+          </p>
+        </div>
+
+        <button
+          id="support-submit"
+          class="support-submit"
+          type="submit"
+        >
+          Send message ✦
+        </button>
+
+        <p
+          id="support-status"
+          class="support-status"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
+
+      <div class="support-divider"></div>
+
+      <p class="support-alternative">
+        Prefer email?
+        Contact us at
+        <a href="mailto:polariscene.support@gmail.com">
+          polariscene.support@gmail.com
+        </a>.
+      </p>
+
+      <p class="support-alternative">
+        By submitting, you agree that we may use the information
+        you provide to respond to your request.
+        See our
+        <a href="privacy.html">Privacy Policy</a>.
+      </p>
+    </section>
+
+    <footer>
+      <p>© Polariscene. Little moments, worth keeping.</p>
+      <p>
+        <a href="index.html">Home</a>
+        · <a href="privacy.html">Privacy</a>
+        · <a href="terms.html">Terms</a>
+      </p>
     </footer>
   </main>
+
+  <script>
+    const form = document.getElementById("polariscene-support-form");
+    const submitButton = document.getElementById("support-submit");
+    const statusMessage = document.getElementById("support-status");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      const endpoint = form.getAttribute("action");
+
+      if (endpoint.includes("YOUR_FORM_ID")) {
+        statusMessage.dataset.state = "error";
+        statusMessage.textContent =
+          "The support form is not connected yet. Please try again later.";
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+      statusMessage.textContent = "";
+      statusMessage.removeAttribute("data-state");
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          body: new FormData(form),
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          let message =
+            "Your message could not be sent. Please try again.";
+
+          try {
+            const result = await response.json();
+
+            if (Array.isArray(result.errors)) {
+              message = result.errors
+                .map((error) => error.message)
+                .filter(Boolean)
+                .join(" ") || message;
+            }
+          } catch {
+            message =
+              "Your message could not be sent. Please try again.";
+          }
+
+          throw new Error(message);
+        }
+
+        form.reset();
+
+        statusMessage.dataset.state = "success";
+        statusMessage.textContent =
+          "Message received! Thank you for contacting Polariscene. We'll get back to you by email.";
+      } catch (error) {
+        statusMessage.dataset.state = "error";
+        statusMessage.textContent =
+          error.message ||
+          "Your message could not be sent. Please try again.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send message ✦";
+      }
+    });
+  </script>
 </body>
 </html>
