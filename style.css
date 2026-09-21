@@ -1,1 +1,23 @@
 :root{color-scheme:light;--cream:#fff8f0;--ink:#43334b;--muted:#806f81;--coral:#ed8178;--line:#e9d7d2;--lav:#eee4f8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 5%,#f5e5f8,transparent 33%),radial-gradient(circle at 10% 10%,#ffe4da,transparent 32%),var(--cream);color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:780px;margin:4rem auto;padding:0 1.2rem 4rem}.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:1.2rem auto;max-width:780px;padding:0 1.2rem;flex-wrap:wrap}.brand{text-decoration:none;color:var(--ink);font-size:1.2rem;font-weight:800;letter-spacing:-.03em}.star{color:var(--coral)}nav{display:flex;gap:.85rem;flex-wrap:wrap}nav a{color:var(--ink);font-size:.92rem}h1{font-size:clamp(2rem,6vw,3.2rem);letter-spacing:-.05em;line-height:1.15;margin:0 0 1rem}h2{font-size:1.22rem;margin:2rem 0 .45rem}p,li{color:#594e60}a{color:#9d4f67}a:hover{text-decoration:none}.eyebrow{text-transform:uppercase;letter-spacing:.12em;color:#a56975;font-weight:700;font-size:.75rem}.panel{background:#fffdfb;border:1px solid var(--line);border-radius:24px;padding:clamp(1.25rem,4vw,2.3rem);box-shadow:0 10px 40px #d8abc91c}.button{display:inline-block;background:var(--coral);color:white;text-decoration:none;border-radius:100px;padding:.7rem 1.25rem;font-weight:700;margin:.35rem .4rem .35rem 0}.button.secondary{background:var(--lav);color:var(--ink)}footer{margin-top:2.5rem;color:var(--muted);font-size:.85rem}.note{border-left:3px solid var(--coral);padding-left:1rem}.date{color:var(--muted);font-size:.9rem}ul{padding-left:1.4rem}
+
+/* Polariscene Vintage Wordmark */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo {
+  display: block;
+  width: 165px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 480px) {
+  .brand-logo {
+    width: 145px;
+  }
+}
